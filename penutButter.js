@@ -1,31 +1,26 @@
-let form = document.querySelector('#food-form');
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  // Get the data from the form
-  const foodField = document.querySelector('#food-field');
-  const food = foodField.value;
+$(function() {
+  var jazzHands = "🤗";
 
-  // Get the list we're going to append to
-  const tastesBadList = document.querySelector('#tastesBad');
-
-  // Create the new element
-  const foodListItem = document.createElement('li');
-  foodListItem.innerText = food;
-
-  // Append that element to the list
-  tastesBadList.appendChild(foodListItem);
-
-  foodListItem.addEventListener('click', (event) => {
-    // Remove it from the html
-    foodListItem.remove();
-    event.cancelBubble = true;
+  // Event handling
+  $("#food-form").on('submit', (event) => {
     console.log(event);
-  })
+    event.preventDefault();
+    const text = $('#food-field').val();
 
-  // Send an http request to a server somewhere saving the food data somehow
-});
+    $('<li>')
+      .text(text)
+      .css({'color': 'tomato'})
+      .appendTo($('#tastesBad'));
+  });
 
-document.addEventListener('click', (event) => {
-  console.log("🤗");
+  // Delegation
+  $('ul').on('click', 'li', function(event){
+      $(this).fadeOut();
+  });
+
+  $('h1').on('click', function(event) {
+    // jQuery UI
+    $(this).effect('shake');
+  });
 });

@@ -1,102 +1,63 @@
-# Client side javascript
+# jQuery 
 
-- Allows us to write logic in the browser. Which lets us manipulate the html once we've sent it to the user. 
+jQuery ($) is a function.
+What can I pass the jQuery function?
 
-### HTML & the DOM
+### 4 things you pass to the jQuery function
 
-Document Object Model
-
-The DOM is a tree
-
-```js
-let node = {
-  parent: {},
-  children: [],
-  tagName: "",
-  ....
-}
-```
+* CSS Selector
+  - Will grab the dom element and wrap it in a jQuery object so that we have access to all the jQuery methods.
 
 ```js
-let body {
-  parent: html,
-  children: [p],
-  tagName: "Body",
-  ...
-}
+const vanillaWay = document.querySelector('#tastesBad');
+const jQueryWay = $('#tastesBad .food');
+
+console.log(vanillaWay, jQueryWay);
+
+console.log(jQueryWay.first().text());
+
+$('li'); // Returns all the list items in the html
 ```
 
-### Global Vars
+* Element String '<li>'
 
-window: the browser window. any global variables exist as properties on this object. 
-navigator: represents the browser
-document: represents the html document.
-
-#### Traversal
-
-Tree traversal:
+Will create a new element
 
 ```js
-document.body.children[4].children[0].innerText
-document.body.children[4].children[0].parentElement.parentElement.children[2]
+const newLi = $('<li>');
+newLi.text("Orange"); 
+$("#tastesBad").append(newLi);
 ```
 
-#### Selection
+* DOM Element
+
+Will "wrap" the dom element in a jQuery object, so that you can access all the jQuery methods on it.
+
+  ```js
+  const li = document.querySelector('li');
+  $(li); // Equivilent $('li');
+
+  $(this)
+  ```
+
+* Another function
+
+It will accept a function as a callback that will get executed when the html document has loaded. 
+
+Instead of this:
 
 ```js
-document.getElementsByTagName('ul')
-document.getElementById('tastesBad')
-document.getElementById('tastesBad').children[0].innerText
+document.addEventListener("DOMContentLoaded", function() {
 
-document.getElementsByClassName('food-list') 
-
-document.querySelector('#tastesBad')
-document.querySelectorAll('ul.food-list li')
+});
 ```
 
-#### Creation
+Use this:
 
 ```js
-let newItem = document.createElement('li')
-document.querySelector('#justPadThai').appendChild(newItem)
-newItem.innerText = "Orange"
+$(function() {
+
+});
 ```
 
-#### Manipulation
-
-```js
-document.querySelector('#tastesGood').children[0].innerText = "🤗"
-```
-
---- 
-
-## JavaScript Versions
-
-Check the different browser's compatibility before choosing which version of JavaScript you will use.  Although browser support for ES6 is growing, there are still browsers in use today that don't support it.
-
-https://caniuse.com/
-
-## Including Javascript Files
-
-```js
-<script src="penutButter.js"></script>
-```
-
-Include the file at the end of the `<body>` tag, so the html can load first.
-
-## Events
-
-https://developer.mozilla.org/en-US/docs/Web/Events
-
-Some Events:
-
-* click
-* hover
-* mouseOver
-* mouseMovce
-* keyboardPress
-* keyboardup
-* keyboardStuff
-
-Event Bubbling: If an event gets triggered on a node, that event will also bubble up and get triggered on every parent node as well.
-
+It's also good practice because it stops us from creating global variables.
