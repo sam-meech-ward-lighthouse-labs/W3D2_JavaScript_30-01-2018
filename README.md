@@ -61,3 +61,13 @@ $(function() {
 ```
 
 It's also good practice because it stops us from creating global variables.
+
+
+### Plugins
+
+We can use jQuery plugins, like jQueryUI, by incluiding the plugin javascript in our project. This gives our jQuery objects more methods that we can call, like `explode`
+
+
+---
+
+Check `penutButter.js` for delegation, event handling, and plugins
